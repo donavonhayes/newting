@@ -1,0 +1,285 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.tic-tac-toe {
+  display: flex;
+  flex-direction: column;
+  background-image: 'https://static.vecteezy.com/system/resources/previews/029/802/990/original/aesthetic-contemporary-printable-seamless-pattern-with-abstract-line-dot-shape-brush-stroke-in-black-and-white-colors-boho-background-in-minimalist-style-illustration-for-wallpaper-fabric-vector.jpg'; 
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.status {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  font-size: 36px;
+  background-color: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.square.winner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: red; /* Change the color as desired */
+  transform: translateY(-50%);
+}
+
+
+
+.square:hover {
+  background-color: #f0f0f0;
+}
+
+/* Add styling for the winner status */
+.winner {
+  color: green;
+  font-weight: bold;
+}
+
+/* Add styling for the drawn game status */
+.draw {
+  color: #333;
+  font-weight: bold;
+}
+
+.reset-button {
+  margin-top: 10px; /* Adjust the margin as needed */
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+}
+
+
+
+.board {
+  display: flex;
+}
+
+button {
+  font-size: 20px; 
+  width: 60px; 
+  height: 60px; 
+  margin: 5px; 
+}
+
+.checkers-box {
+  display: inline-block;
+  text-align: center;
+}
+
+.checkers-header {
+  margin-bottom: 10px;
+}
+
+.checkers-board {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkers-board:hover {
+  box-shadow: gray; 
+}
+
+.checkers-row {
+  display: flex;
+}
+
+.checkers-square {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.black {
+  background-color: #8b4513; 
+  color: #fff;
+}
+
+.white {
+  background-color: #f0d9b5; 
+}
+
+.checker {
+  width: 80%;
+  height: 80%;
+  background-color: #000; 
+  border-radius: 50%;
+  margin: auto;
+}
+
+
+
+button {
+  font-size: 16px; 
+  width: 30px; 
+  height: 30px; 
+  margin: 2px; 
+}
+
+
+.sudoku-box {
+  max-width: 600px;
+  margin: 20px auto; 
+}
+
+/* Sudoku.css */
+.sudoku-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.sudoku-controls {
+  margin-top: 20px; /* Adjust the margin as needed */
+  /* Styles for the buttons and other controls */
+  /* ... */
+}
+
+
+.sudoku-table {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
+.sudoku-row {
+  display: flex;
+}
+
+.sudoku-cell {
+  flex: 1;
+  position: relative;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sudoku-cell:hover {
+  background-color: #f0f0f0;
+}
+
+.sudoku-cell input {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightgreen;
+  padding: 10px;
+  display: flex;
+}
+
+.navigation a {
+  color: #fff;
+  margin-right: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Home.css */
+.home {
+  text-align: center;
+  margin: 50px;
+  background-color: lightseagreen;
+  padding: 20px;
+  border-radius: 10px
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px;
+  font-size: 18px;
+}
+
+Link {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+Link:hover {
+  text-decoration: underline;
+}
+
+
