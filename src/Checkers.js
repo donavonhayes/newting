@@ -65,6 +65,16 @@ const Checkers = () => {
     // This is a placeholder and needs to be customized
 
     // Check for a winner after each turn
+
+/* eslint-disable no-unused-vars */
+
+// Rest of the code...
+
+const checkForWinner = (currentBoard) => {
+  // Function implementation...
+};
+
+
     const winner = checkForWinner(newBoard);
     if (winner) {
       setWinner(winner);
@@ -84,13 +94,11 @@ const Checkers = () => {
   };
 
   const checkForWinner = (currentBoard) => {
-    // Inside Checkers.js
 
 const checkForWinner = (currentBoard) => {
   let redPieces = 0;
   let blackPieces = 0;
 
-  // Count the remaining pieces of each color
   currentBoard.forEach(row => {
     row.forEach(piece => {
       if (piece === 'red') {
