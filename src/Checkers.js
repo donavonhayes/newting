@@ -1,99 +1,59 @@
 // Checkers.js
+
 import React, { useState } from 'react';
+import './index.css'; // Import your CSS file
 
 const Checkers = () => {
-  const initialBoard = [
-    ['B', null, 'B', null, 'B', null, 'B', null],
-    [null, 'B', null, 'B', null, 'B', null, 'B'],
-    ['B', null, 'B', null, 'B', null, 'B', null],
+  const [board, setBoard] = useState([
+    ['black', null, 'black', null, null, null, 'red', null],
+    [null, 'black', null, 'black', null, 'red', null, 'red'],
+    ['black', null, 'black', null, null, null, 'red', null],
     [null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null],
-    ['R', null, 'R', null, 'R', null, 'R', null],
-    [null, 'R', null, 'R', null, 'R', null, 'R'],
-    ['R', null, 'R', null, 'R', null, 'R', null],
-  ];
+    [null, 'red', null, 'red', null, 'black', null, 'black'],
+    ['red', null, 'red', null, null, null, 'black', null],
+    [null, 'red', null, 'red', null, 'black', null, 'black'],
+  ]);
 
-  const [board, setBoard] = useState(initialBoard);
   const [selectedPiece, setSelectedPiece] = useState(null);
-  const [turn, setTurn] = useState('B'); // 'B' for black, 'R' for red
 
-  const handleClick = (row, col) => {
-    const newBoard = [...board];
-
-    if (selectedPiece === null) {
-      const piece = board[row][col];
-
-      if (piece && isPlayerPiece(piece)) {
-        setSelectedPiece({ row, col, piece });
-      }
-    } else {
-      const { row: fromRow, col: fromCol, piece } = selectedPiece;
-
-      if (isValidMove(fromRow, fromCol, row, col, piece)) {
-        newBoard[row][col] = piece;
-        newBoard[fromRow][fromCol] = null;
-
+  const handleSquareClick = (row, col) => {
+    if (selectedPiece) {
+      // Handle the move logic here
+      // For simplicity, let's assume legal moves are only diagonal and capturing
+      // You may need to implement the full rules of checkers
+      const isLegalMove =''
+      if (isLegalMove) {
+        // Update the board state
+        const newBoard = /* Perform the move and update the board */
         setBoard(newBoard);
         setSelectedPiece(null);
-        switchTurn();
+      } else {
+        // Inform the player that the move is not legal
+        alert('Illegal move. Try again.');
+      }
+    } else {
+      // Handle the selection logic here
+      const piece = board[row][col];
+      if (piece !== null /* Check if it's the player's piece */) {
+        setSelectedPiece({ row, col });
       }
     }
   };
 
-  const isPlayerPiece = (piece) => {
-    return piece === 'B' || piece === 'R';
-  };
-
-  const isValidMove = (fromRow, fromCol, toRow, toCol, piece) => {
-   
-    const rowDiff = Math.abs(toRow - fromRow);
-    const colDiff = Math.abs(toCol - fromCol);
-
-    if (board[toRow][toCol] !== null) {
-      return false;
-    }
-
-    return rowDiff === 1 && colDiff === 1;
-  };
-
-  const switchTurn = () => {
-    setTurn((prevTurn) => (prevTurn === 'B' ? 'R' : 'B'));
-  };
-
-  const renderSquare = (row, col, piece) => {
-    const isEvenRow = row % 2 === 0;
-    const isEvenCol = col % 2 === 0;
-    const isBlackSquare = (isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol);
-
-    return (
-      <div
-        key={col}
-        onClick={() => handleClick(row, col)}
-        className={`checkers-square ${isBlackSquare ? 'black' : 'red'} ${
-          selectedPiece && selectedPiece.row === row && selectedPiece.col === col
-            ? 'selected'
-            : ''
-        }`}
-      >
-        {piece && <div className={`checker ${piece.toLowerCase()}`} />}
-      </div>
-    );
-  };
-
-  const renderRow = (row, rowIndex) => (
-    <div key={rowIndex} className="checkers-row">
-      {row.map((piece, colIndex) => renderSquare(rowIndex, colIndex, piece))}
-    </div>
-  );
-
   return (
-    <div className="checkers-box">
-      <div className="checkers-header">
-        <p>Turn: {turn === 'B' ? 'Black' : 'Red'}</p>
-      </div>
-      <div className="checkers-board">
-        {board.map((row, rowIndex) => renderRow(row, rowIndex))}
-      </div>
+    <div className="checkers-board">
+      {board.map((row, rowIndex) => (
+        <div key={rowIndex} className="checkers-row">
+          {row.map((piece, colIndex) => (
+            <div
+              key={colIndex}
+              className={`checker ${piece}`}
+              onClick={() => handleSquareClick(rowIndex, colIndex)}
+            ></div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
