@@ -103,47 +103,6 @@ function findPossibleNewPosition(piece, player) {
 }
 
 function enableToMove(p) {
-  let found = false;
-  let newPosition = null;
-  
-  
-  posNewPosition.forEach((element) => {
-    if (element.compare(p)) {
-      found = true;
-      newPosition = element;
-      return;
-    }
-  });
-
-  if (found){
-     // if the current piece can move on, edit the board and rebuild
-    board[newPosition.row][newPosition.column] = currentPlayer;
-    board[readyToMove.row][readyToMove.column] = 0;
-
-    // init value
-    readyToMove = null;
-    posNewPosition = [];
-    capturedPosition = [];
-
-    currentPlayer = reverse(currentPlayer);
-
-    displayCurrentPlayer();
-    builBoard();
-  } else {
-    builBoard();
-   }
-}
-
-let piece = e.target;
-const row = parseInt(piece.getAttribute("row"));
-const column = parseInt(piece.getAttribute("column"));
-let p = new Piece(row, column);
-
- if (posNewPosition.length > 0) {
-    enableToMove(p);
- }
-
-function enableToMove(p) {
   let find = false;
   let newPosition = null;
   // check if the case where the player play the selected piece can move on
