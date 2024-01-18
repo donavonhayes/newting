@@ -1,8 +1,7 @@
-
 // Checkers.js
 
 import React, { useState } from 'react';
-import './index.css'; // Import your CSS file
+import './Checkers.css'; // Import your CSS file
 
 const Checkers = () => {
   const initialBoard = [
@@ -85,8 +84,64 @@ const Checkers = () => {
   };
 
   const checkForWinner = (currentBoard) => {
-    // Implement logic to check for a winner
-    // This is a placeholder and needs to be customized
+    // Inside Checkers.js
+
+const checkForWinner = (currentBoard) => {
+  let redPieces = 0;
+  let blackPieces = 0;
+
+  // Count the remaining pieces of each color
+  currentBoard.forEach(row => {
+    row.forEach(piece => {
+      if (piece === 'red') {
+        redPieces++;
+      } else if (piece === 'black') {
+        blackPieces++;
+      }
+    });
+  });
+
+  // Check if one player has no remaining pieces
+  if (redPieces === 0) {
+    return 'black'; // Black wins
+  } else if (blackPieces === 0) {
+    return 'red'; // Red wins
+  }
+
+  // Check if a player is unable to make a legal move
+  const playerCannotMove = (color) => {
+    for (let row = 0; row < currentBoard.length; row++) {
+      for (let col = 0; col < currentBoard[row].length; col++) {
+        if (currentBoard[row][col] === color) {
+          // Check if the piece can make any legal moves
+          if (canPieceMove(currentBoard, row, col)) {
+            return false; // The player can make a move
+          }
+        }
+      }
+    }
+    return true; // The player cannot make any move
+  };
+
+  // Check if either player cannot make a move
+  if (playerCannotMove('red')) {
+    return 'black'; // Black wins
+  } else if (playerCannotMove('black')) {
+    return 'red'; // Red wins
+  }
+
+  // If no winner yet
+  return null;
+};
+
+const canPieceMove = (currentBoard, row, col) => {
+  // Implement logic to check if the piece at (row, col) can make any legal moves
+  // This depends on the specific rules of checkers
+  // You may need to consider regular moves, capturing, and kings
+  // This is a placeholder and needs to be customized
+  return true;
+};
+
     return null;
   };
 
@@ -108,4 +163,3 @@ const Checkers = () => {
 };
 
 export default Checkers;
-
