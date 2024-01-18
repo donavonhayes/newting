@@ -1,7 +1,7 @@
 // Checkers.js
 
 import React, { useState } from 'react';
-import './Checkers.css'; // Import your CSS file
+import './index.css'; // Import your CSS file
 
 const Checkers = () => {
   const initialBoard = [
