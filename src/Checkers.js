@@ -22,7 +22,8 @@ const Checkers = () => {
       // Handle the move logic here
       // For simplicity, let's assume legal moves are only diagonal and capturing
       // You may need to implement the full rules of checkers
-      const isLegalMove =''
+
+      const isLegalMove = ''
       if (isLegalMove) {
         // Update the board state
         const newBoard = /* Perform the move and update the board */
