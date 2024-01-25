@@ -129,13 +129,7 @@ const handleClick = (index) => {
   }
 };
 
-return (
-  <div className="App">
-    <h1>Checkers Game</h1>
-    <Board squares={squares} onClick={handleClick} />
-    {gameOver && <h2>Game Over</h2>}
-  </div>
-);
+
 
 
 export default App;
