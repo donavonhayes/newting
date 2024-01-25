@@ -129,14 +129,6 @@ const handleClick = (index) => {
   }
 };
 
-// Other functions to implement:
-// - calculateRowCol(index)
-// - checkValidMove(selectedPiece, destination)
-// - movePiece(selectedPiece, destination)
-// - checkCaptures(piece, squares)
-
-// Additional logic to check for kings, game over, etc.
-
 return (
   <div className="App">
     <h1>Checkers Game</h1>
@@ -144,5 +136,6 @@ return (
     {gameOver && <h2>Game Over</h2>}
   </div>
 );
+
 
 export default App;
