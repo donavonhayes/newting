@@ -81,4 +81,68 @@ function App() {
   );
 }
 
+// Inside App component
+
+const [squares, setSquares] = useState([]);
+const [turn, setTurn] = useState('black'); // or 'red'
+const [selectedPiece, setSelectedPiece] = useState(null);
+const [gameOver, setGameOver] = useState(false);
+
+// Initialize the board and pieces
+
+const initializeBoard = () => {
+  // Initialize the board as before
+};
+
+// Function to handle clicking on squares
+
+const handleClick = (index) => {
+  if (gameOver) return;
+
+  const { row, col } = calculateRowCol(index);
+
+  if (!selectedPiece) {
+    // Select a piece if it's the current player's turn
+    if (squares[row][col].piece && squares[row][col].piece.color === turn) {
+      setSelectedPiece({ row, col });
+    }
+  } else {
+    // Handle moving the selected piece
+    const isValidMove = checkValidMove(selectedPiece, { row, col });
+    if (isValidMove) {
+      const updatedSquares = movePiece(selectedPiece, { row, col });
+
+      // Check for captures and additional moves
+      const captures = checkCaptures({ row, col }, updatedSquares);
+      if (captures.length > 0) {
+        // Continue capturing
+        // Update the board
+      } else {
+        // Switch turns
+        setTurn(turn === 'black' ? 'red' : 'black');
+        setSelectedPiece(null);
+      }
+    } else {
+      // Invalid move, deselect the piece
+      setSelectedPiece(null);
+    }
+  }
+};
+
+// Other functions to implement:
+// - calculateRowCol(index)
+// - checkValidMove(selectedPiece, destination)
+// - movePiece(selectedPiece, destination)
+// - checkCaptures(piece, squares)
+
+// Additional logic to check for kings, game over, etc.
+
+return (
+  <div className="App">
+    <h1>Checkers Game</h1>
+    <Board squares={squares} onClick={handleClick} />
+    {gameOver && <h2>Game Over</h2>}
+  </div>
+);
+
 export default App;
