@@ -307,3 +307,32 @@ Link:hover {
 }
 
 
+.tic-tac-toe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board {
+  margin-top: 20px;
+}
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  margin-right: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  margin-top: 20px;
+}

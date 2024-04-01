@@ -1,85 +1,105 @@
-import React, { useState, useEffect } from 'react';
-import './index.css';
+import React, { useState } from 'react';
 
-const BOARD_SIZE = 8;
+function Checkers() {
+  const initialBoard = [
+    ['', 'black', '', 'black', '', 'black', '', 'black'],
+    ['black', '', 'black', '', 'black', '', 'black', ''],
+    ['', 'black', '', 'black', '', 'black', '', 'black'],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['red', '', 'red', '', 'red', '', 'red', ''],
+    ['', 'red', '', 'red', '', 'red', '', 'red'],
+    ['red', '', 'red', '', 'red', '', 'red', '']
+  ];
 
-function Square({ black, children, onClick }) {
-  const backgroundColor = black ? 'black' : 'white';
-  const color = black ? 'white' : 'black';
+  const [board, setBoard] = useState(initialBoard);
+  const [selectedPiece, setSelectedPiece] = useState(null);
 
-  return (
-    <div
-      style={{
-        backgroundColor,
-        color,
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
-}
-
-function Board({ squares, onClick }) {
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${BOARD_SIZE}, 50px)`,
-        gridTemplateRows: `repeat(${BOARD_SIZE}, 50px)`,
-        width: BOARD_SIZE * 50,
-      }}
-    >
-      {squares.flat().map((square, index) => (
-        <Square key={index} black={square.black} onClick={() => onClick(index)}>
-          {square.piece}
-        </Square>
-      ))}
-    </div>
-  );
-}
-
-function App() {
-  const [squares, setSquares] = useState([]);
-
-  useEffect(() => {
-    initializeBoard();
-  }, []);
-
-  const initializeBoard = () => {
-    const newSquares = Array(BOARD_SIZE)
-      .fill(null)
-      .map((_, row) =>
-        Array(BOARD_SIZE)
-          .fill(null)
-          .map((_, col) => ({
-            black: (row + col) % 2 === 1,
-            piece: null,
-          }))
-      );
-
-    // Set initial positions of black and red pieces
-
-    setSquares(newSquares);
-  };
-
-  const handleClick = (index) => {
-    // Handle clicking logic for moving pieces
+  const handleSquareClick = (row, col) => {
+    if (selectedPiece) {
+      // Move the selected piece to the clicked square
+      const updatedBoard = [...board];
+      updatedBoard[row][col] = selectedPiece;
+      updatedBoard[selectedPiece.row][selectedPiece.col] = '';
+      setBoard(updatedBoard);
+      setSelectedPiece(null);
+    } else {
+      // Select the piece if it belongs to the current player
+      const piece = board[row][col];
+      if (piece === 'red' /* or another condition to determine current player */) {
+        setSelectedPiece({ piece, row, col });
+      }
+    }
   };
 
   return (
-    <div className="App">
-      <h1>Checkers Game</h1>
-      <Board squares={squares} onClick={handleClick} />
+    <div className="checkers">
+      <div className="board">
+        {board.map((row, rowIndex) => (
+          <div key={rowIndex} className="row">
+            {row.map((square, colIndex) => (
+              <div
+                key={colIndex}
+                className={`square ${((rowIndex + colIndex) % 2 === 0) ? 'black' : 'red'}`}
+                onClick={() => handleSquareClick(rowIndex, colIndex)}
+              >
+                {square && <div className={`piece ${square}`} />}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
+export default Checkers;
 
-export default App;
+ Styles
+
+Checkers 
+  display: flex;
+  justify: center;
+  align: center;
+
+
+board 
+  display: grid;
+  grid-template columns:'repeat(8, 50px)';
+  grid-template rows: 'repeat(8, 50px)';
+
+row 
+  display: 'flex';
+
+
+square 
+  width: '5px';
+  height: '50px';
+  display: 'flex';
+  justifycontent: 'center';
+  alignitems: 'center';
+  cursor: pointer;
+
+
+black 
+  backgroundcolor: '#8b4513'; /* Dark brown */
+
+
+red 
+  backgroundcolor: '#f0d9b5'; /* Light brown */
+
+
+piece 
+  width: '80%';
+  height: '80%';
+  borderradius: '50%';
+
+
+
+black-piece 
+  backgroundcolor: 'black';
+
+
+red-piece 
+  backgroundcolor: 'red';
+
