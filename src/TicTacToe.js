@@ -1,4 +1,3 @@
-// TicTacToeGame.js
 import React, { useState, useEffect } from 'react';
 import './index.css';
 
@@ -84,4 +83,3 @@ function TicTacToe() {
 }
 
 export default TicTacToe;
-
